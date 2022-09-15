@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/main_scroller"
+
+    tools:context=".SecondFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="90"
+                android:src="@drawable/logo" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="right"
+                android:id="@+id/toggle"
+                android:src="@drawable/toogle_menu" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:fitsSystemWindows="true"
+            >
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible"
+                android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible"
+                android:id="@+id/detailed_view"
+                android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:layout_gravity="center"
+                android:id="@+id/parent"
+                android:background="@drawable/blue_curve"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/select_file"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/margin200"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:padding="20dp"
+                    android:src="@drawable/biig_and_iggly" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/files_recycler"
+                    style="@style/your_style_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin10"
+                    android:layout_marginTop="@dimen/margin10"
+                    android:layout_marginRight="@dimen/margin10"
+                    android:layout_marginBottom="@dimen/margin50"
+                    android:fadeScrollbars="false"
+                    android:verticalScrollbarPosition="left">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <ImageView
+                    android:id="@+id/maximize"
+                    android:layout_width="@dimen/margin20"
+                    android:layout_height="@dimen/margin20"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="bottom"
+                    android:layout_marginTop="@dimen/margin5"
+                    android:layout_marginBottom="@dimen/margin15"
+
+                    android:gravity="center"
+                    android:layout_marginLeft="@dimen/margin10"
+
+                    android:src="@drawable/ic_expand"/>
+
+                <ImageView
+                    android:id="@+id/click_text"
+                    android:layout_width="@dimen/_200dp"
+                    android:layout_height="@dimen/margin20"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="@dimen/margin10"
+                    android:layout_marginTop="@dimen/margin10"
+                    android:layout_marginBottom="@dimen/margin10"
+                    android:gravity="center"
+                    android:src="@drawable/click_text" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="@string/please_select_file"
+                android:textStyle="bold"
+                android:layout_gravity="bottom"
+                    android:layout_marginBottom="@dimen/margin10"
+
+                    android:gravity="center"
+                android:textSize="16dp"
+                    android:layout_toRightOf="@+id/maximize"
+                android:layout_alignParentBottom="true"
+                    android:visibility="gone"
+                android:textColor="@color/purple" />
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_margin="10dp"
+                android:scrollbars="vertical"
+                android:id="@+id/child_scroller"
+                android:visibility="visible"
+                >
+
+
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/files_layout"
+            android:orientation="vertical">
+
+
+
+            </LinearLayout>
+
+            </ScrollView>
+
+    </RelativeLayout>
+
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_60dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/button_bg"
+            android:hint="@string/email_to"
+            android:singleLine="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="5dp"
+            android:textSize="12sp"
+            android:text="@string/email_note"
+            android:textColor="@color/white" />
+
+        <EditText
+            android:id="@+id/email_from"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_60dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/button_bg"
+            android:hint="@string/your_email"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
+
+        <EditText
+            android:id="@+id/message"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/button_bg"
+            android:hint="@string/message"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:gravity="top"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/terms"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginLeft="40dp"
+            android:text="@string/agree_note"
+            android:buttonTint="@color/check_box_bg"
+
+
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_second"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="20dp"
+            android:background="@drawable/round_button_bg"
+            android:text="@string/share_files"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:layout_marginBottom="@dimen/margin40"/>
+            </LinearLayout>
+
+            </ScrollView>
+            <RelativeLayout
+                android:id="@+id/frame_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/color_primary"
+                android:visibility="invisible"
+                android:layout_gravity="top"
+                android:orientation="vertical"
+                >
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/files_recycler_large"
+                    style="@style/your_style_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="@dimen/margin20"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="@dimen/_100dp"
+                    android:fadeScrollbars="false"
+
+                    android:clickable="true"
+                    android:verticalScrollbarPosition="left">
+
+                </androidx.recyclerview.widget.RecyclerView>
+            <RelativeLayout
+                android:id="@+id/frame_view1"
+
+                android:visibility="visible"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="@dimen/margin20"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="@dimen/_100dp"
+                >
+            </RelativeLayout>
+                <ImageView
+                    android:id="@+id/minimize"
+                    android:layout_width="@dimen/margin30"
+                    android:layout_height="@dimen/margin30"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="@dimen/margin30"
+                    android:layout_alignParentBottom="true"
+
+                    android:gravity="center"
+                    android:src="@drawable/ic_escape"/>
+
+                <ImageView
+                    android:id="@+id/click_text1"
+                    android:layout_width="@dimen/_200dp"
+                    android:layout_height="@dimen/margin20"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="@dimen/margin30"
+
+                    android:layout_marginTop="@dimen/margin10"
+                    android:layout_marginBottom="@dimen/margin10"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"
+
+                    android:src="@drawable/click_text"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/margin30"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="30dp"
+                    android:layout_toRightOf="@+id/minimize"
+                    android:layout_marginTop="@dimen/margin10"
+                    android:layout_marginBottom="@dimen/margin10"
+                    android:gravity="center"
+                    android:text="@string/please_select_file"
+                    android:textColor="@color/purple"
+                    android:textSize="20dp"
+                    android:visibility="gone"
+
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </FrameLayout>
+    </LinearLayout>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/show_layout"
+        android:visibility="gone"
+        android:background="@color/white"
+        android:gravity="right"
+        android:layout_marginLeft="@dimen/_100dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_100dp"
+            android:background="@color/purple"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_30dp"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50dp"
+            android:gravity="center"
+            android:text="@string/show_tutoroal"
+            android:textColor="@color/black"
+            android:id="@+id/show"
+            android:textSize="@dimen/_20dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/purple"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50dp"
+            android:gravity="center"
+            android:text="@string/cancel"
+            android:id="@+id/cancel"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_20dp"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</FrameLayout>

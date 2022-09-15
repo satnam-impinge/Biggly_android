@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Bigg.ly</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="email_to">Email to*</string>
+    <string name="your_email">Your Email*</string>
+    <string name="message">Message</string>
+    <string name="email_note">Enter multiple email addresses separated by comma.</string>
+    <string name="send">Send</string>
+    <string name="agree_note"><![CDATA[I agree to the Terms & Conditions]]></string>
+    <string name="please_check_internet_connection">Please check network connection.</string>
+    <string name="add_file">Please select file to upload.</string>
+    <string name="success_msg">Bigg.ly send Big Files for you.</string>
+    <string name="please_wait">Please wait</string>
+    <string name="resource_create_successfully">Updated</string>
+    <string name="error">Sorry!! An error occured</string>
+    <string name="upload_successfully">Files uploaded successfully</string>
+    <string name="upload_successfully1">Upload successful</string>
+    <string name="please_select_file">Click to Add Files</string>
+    <string name="please_enter_valid_email">Please enter valid email</string>
+    <string name="please_enter_valid_message">Please enter valid message</string>
+    <string name="please_accept_terms">Please accept terms &amp; conditions</string>
+    <string name="share_files">Share Files</string>
+    <string name="skip">Skip</string>
+    <string name="show_tutoroal">Show Tutorial</string>
+    <string name="cancel">Cancel</string>
+    <string name="photos">Photos</string>
+    <string name="done">Done</string>
+    <string name="get_started">Get started</string>
+</resources>

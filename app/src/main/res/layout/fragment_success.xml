@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/file_sent"
+
+    tools:context=".SuccessFragment">
+<!--    android:background="@drawable/tutorial"-->
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="@dimen/_100dp"
+        android:layout_height="@dimen/_50dp"
+        android:text="@string/done"
+        android:id="@+id/file_sent"
+
+        android:textColor="@color/white"
+        android:background="@color/check_box_bg"
+        android:layout_margin="@dimen/_20dp"/>
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:textSize="20sp"
+        android:visibility="gone"
+        android:layout_margin="@dimen/margin20"
+        android:id="@+id/back"
+        android:src="@drawable/ic_baseline_arrow_back_24"
+        android:textColor="@color/purple_500"/>
+
+</RelativeLayout>
