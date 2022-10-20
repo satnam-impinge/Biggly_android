@@ -148,6 +148,8 @@ class SecondFragment : Fragment() , PRRequestBody.FileUploadercallback{
             }
             isRunning = true
             Utility.hideKeyboard(activity)
+
+            Utility.getInstance(activity).showLoading(resources.getString(R.string.uploading_data))
             callCompleteProfile()
         } else {
             Toast.makeText(
@@ -229,7 +231,11 @@ class SecondFragment : Fragment() , PRRequestBody.FileUploadercallback{
             filesAdapter?.notifyDataSetChanged()
 
         }
+        if(pathList?.size ==0){
+            binding.childScroller.visibility = View.GONE
+            binding.selectFile.visibility = View.VISIBLE
 
+        }
     }
 
     private fun selectFile() {
@@ -425,6 +431,13 @@ class SecondFragment : Fragment() , PRRequestBody.FileUploadercallback{
 
     fun removeFIle(index: Int){
         pathList?.removeAt(index)
+
+
+        if(pathList?.size ==0){
+            binding.childScroller.visibility = View.GONE
+            binding.selectFile.visibility = View.VISIBLE
+
+        }
     }
      fun callCompleteProfile() {
         try {
@@ -481,6 +494,11 @@ class SecondFragment : Fragment() , PRRequestBody.FileUploadercallback{
                     utility.hideLoading()
 
                     try {
+
+                        fileList!!.clear()
+                        filepathList!!.clear()
+                        pathList!!.clear()
+                        setfilesAdapter()
                         System.out.println(response.body().toString()) //convert reponse to string
 
                         if((response.body()?.status).equals("success")) {
@@ -505,7 +523,11 @@ class SecondFragment : Fragment() , PRRequestBody.FileUploadercallback{
 
                 override fun onFailure(call: Call<ResponseModel?>, t: Throwable) {
                //   findNavController().navigate(R.id.action_SecondFragment_to_sucessFragment)
-                    utility.hideLoading()
+
+                    fileList!!.clear()
+                    filepathList!!.clear()
+                    pathList!!.clear()
+                    setfilesAdapter()
                      Toast.makeText(
                         context,
                         t.message,
@@ -525,10 +547,14 @@ class SecondFragment : Fragment() , PRRequestBody.FileUploadercallback{
                     disableView();
                     isRunning = false;
                     stopService()
+
+                    Utility.getInstance(activity).hideLoading()
                 }
             })
         } catch (e: java.lang.Exception) {
             e.message
+            Utility.getInstance(activity).hideLoading()
+
         }
     }
 
@@ -612,7 +638,7 @@ class SecondFragment : Fragment() , PRRequestBody.FileUploadercallback{
                 fileList!!.get(index).progress = current_percent;
 
                 filesAdapter!!.notifyItemChanged(index)
-                _binding!!.filesRecycler!!.scrollToPosition(index)
+               // _binding!!.filesRecycler!!.scrollToPosition(index)
             }
 
         }catch (e: Exception){

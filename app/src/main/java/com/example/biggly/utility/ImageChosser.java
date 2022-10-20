@@ -12,6 +12,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.os.Handler;
 import android.os.Parcelable;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
@@ -98,7 +99,7 @@ public class ImageChosser {
         galleryIntent.setType("*/*");
         galleryIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
 
-        String[] mimetypes = {"image/*", "application/pdf", "application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document"};
+        String[] mimetypes = {"*/*"};
 
         String[] mimeTypes =
                 {"image/*", "video/*","application/pdf","application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", // .doc & .docx
@@ -108,7 +109,7 @@ public class ImageChosser {
                         "application/pdf",
                         "application/zip", "application/vnd.android.package-archive"};
 
-        galleryIntent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
+        galleryIntent.putExtra(Intent.EXTRA_MIME_TYPES, mimetypes);
         galleryIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
 //        galleryIntent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -743,26 +744,34 @@ public class ImageChosser {
     }
 
     private static void saveFileFromUri(Context context, Uri uri, String destinationPath) {
-        InputStream is = null;
-        BufferedOutputStream bos = null;
-        try {
-            is = context.getContentResolver().openInputStream(uri);
-            bos = new BufferedOutputStream(new FileOutputStream(destinationPath, false));
-            byte[] buf = new byte[1024];
-            is.read(buf);
-            do {
-                bos.write(buf);
-            } while (is.read(buf) != -1);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (is != null) is.close();
-                if (bos != null) bos.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                InputStream is = null;
+                BufferedOutputStream bos = null;
+                try {
+                    is = context.getContentResolver().openInputStream(uri);
+                    bos = new BufferedOutputStream(new FileOutputStream(destinationPath, false));
+                    byte[] buf = new byte[1024];
+                    is.read(buf);
+                    do {
+                        bos.write(buf);
+                    } while (is.read(buf) != -1);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    try {
+                        if (is != null) is.close();
+                        if (bos != null) bos.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
-        }
+        }).start();
+
+
     }
     public void downloadFile(String url, Context context,String type) {
         String DownloadUrl = url;
@@ -804,8 +813,17 @@ public class ImageChosser {
                 final String docId = DocumentsContract.getDocumentId(uri);
                 final String[] split = docId.split(":");
                 final String type = split[0];
+                String fileName = getFileName(context, uri);
+                File cacheDir = getDocumentCacheDir(context);
+                File file = generateFileName(fileName, cacheDir);
+                String destinationPath = null;
+                if (file != null) {
+                    destinationPath = file.getAbsolutePath();
+                    saveFileFromUri(context, uri, destinationPath);
+                }
 
-                return Environment.getExternalStorageDirectory() + "/" + split[1];
+                return  destinationPath;
+                //return Environment.getExternalStorageDirectory() + "/" + split[1];
 
                 // TODO handle non-primary volumes
             }
